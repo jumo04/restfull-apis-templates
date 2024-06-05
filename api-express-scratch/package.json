@@ -1,0 +1,22 @@
+{
+  "name": "api-express-scratch",
+  "version": "1.0.0",
+  "description": "This api its a tutorial with express made in 2024",
+  "main": "http.js",
+  "scripts": {
+    "dev:1": "nodemon 2.routing.js",
+    "dev:2": "node --watch express.js"
+  },
+  "author": "Juan Fernando Moreno",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "standard": "^17.1.0"
+  },
+  "eslintConfig": {
+    "extends": "standard"
+  },
+  "dependencies": {
+    "express": "4.19.2"
+  }
+}

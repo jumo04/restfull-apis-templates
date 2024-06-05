@@ -1,0 +1,15 @@
+GET http://localhost:3000/pokemon/ditto
+
+###
+
+POST http://localhost:3000/poke
+Content-Type: application/json
+
+{
+    "name": "ditSto",
+    "type": "normal",
+    "height": 1.0,
+    "weight": 1.0,
+    "moves": [ "1", "2", "3", "4", ""
+    ]
+}

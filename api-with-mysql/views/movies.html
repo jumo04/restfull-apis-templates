@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probar api rest</title>
+    <style>
+        article{
+            border: 1px solid #ccc;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        img{
+            height: auto;
+            width: 320px;
+            max-width: 100%;
+        }
+    </style>
+    <!-- cors: es un mecanismo que solo funciona en el navegador y sirve para restringir el acceso si el recurso no se puede utilizar en ese origen,
+    solo funciona en navegadores -->
+    <script type="module">
+        fetch('http://localhost:3000/movies').then(res => res.json()).then(movies => {
+            const html = movies.map(movie => {
+                return `
+                <article data-id="${movie.id}">
+                    <h2>${movie.title}</h2>
+                    <p>${movie.year}</p>
+                    <img src="${movie.poster}" alt="">
+                    <button>Eliminar</button>
+                </article>
+                `
+            }).join('');
+
+            document.querySelector('main').innerHTML= html
+
+            document.addEventListener('click', e =>{
+                if(e.target.tagName === 'BUTTON'){
+                    const article = e.target.closest('article');
+                    const id = article.dataset.id;
+                    // const id = e.target.getAttribute('data-id')
+                    fetch(`http://localhost:3000/movies/${id}`, {
+                        method: 'DELETE'
+                    }).then(res => {
+                        if(res.ok)
+                        {
+                         article.remove();
+                        }
+                  })
+                }
+            })
+
+        })
+    </script>
+</head>
+<body>
+    <main></main>
+</body>
+</html>
